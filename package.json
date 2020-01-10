@@ -1,0 +1,22 @@
+{
+  "name": "backend-boardwalk",
+  "version": "1.0.0",
+  "description": "boardwalk's backend part",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "devDependencies": {
+    "concurrently": "^5.0.2",
+    "nodemon": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neha039/backend-boardwalk.git"
+  },
+  "author": "Team Boardwalk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neha039/backend-boardwalk/issues"
+  }
+}
