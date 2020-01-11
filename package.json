@@ -3,8 +3,19 @@
   "version": "1.0.0",
   "description": "boardwalk's backend part",
   "main": "server.js",
+  "engines": {
+    "node:": "10.15.3"
+  },
   "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "nodemon server.js",
     "test": "mocha || true"
+  },
+  "author": "Team Boardwalk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neha039/backend-boardwalk/issues"
   },
   "devDependencies": {
     "concurrently": "^5.0.2",
@@ -14,9 +25,25 @@
     "type": "git",
     "url": "git+https://github.com/Neha039/backend-boardwalk.git"
   },
-  "author": "Team Boardwalk",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Neha039/backend-boardwalk/issues"
+  "dependencies": {
+    "axios": "^0.19.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.1",
+    "if-env": "^1.0.4",
+    "mocha": "^7.0.0",
+    "mongoose": "^5.8.7",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "react-moment": "^0.9.7",
+    "react-router-dom": "^5.1.2",
+    "session": "^0.1.0",
+    "sinon": "^8.0.4",
+    "validator": "^12.1.0"
   }
 }
