@@ -24,7 +24,8 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://boardwalkdb@ds135724.mlab.com:35724/heroku_v0wj9l6z',
+  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalktest',
+  // process.env.MONGODB_URI ||  'mongodb://boardwalkdb@ds135724.mlab.com:35724/heroku_v0wj9l6z',
 );
 
 // Start the API server
