@@ -20,7 +20,7 @@ const passport = require("./config/passport");
 
 //connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://boardwalkdb@ds135724.mlab.com:35724/heroku_v0wj9l6z',
+  process.env.MONGODB_URI ||  'mongodb://heroku_v0wj9l6z:s4u185mo8d5ht77tu3s8f6u5ke@ds135724.mlab.com:35724/heroku_v0wj9l6z',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
