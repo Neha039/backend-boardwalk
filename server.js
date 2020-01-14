@@ -20,7 +20,7 @@ const passport = require("./config/passport");
 
 //connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://heroku_v0wj9l6z:s4u185mo8d5ht77tu3s8f6u5ke@ds135724.mlab.com:35724/heroku_v0wj9l6z',
+  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk02',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -73,10 +73,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
+// // Serve up static assets (usually on heroku)
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+// }
 
 // Define API routes here
 const routes = require("./routes");
@@ -84,10 +84,10 @@ app.use(routes);
 
 // Default behavior: send every unmatched route request to the React app (in production)
 app.get("*", (req, res) => {
-  if (process.env.NODE_ENV === "production") {
-    return res.sendFile(path.join(__dirname, "./client/build/index.html"));
-  }
-  res.status(500).send("This route does not exist!");
+  // if (process.env.NODE_ENV === "production") {
+  //   return res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  // }
+  res.status(404).send("This route does not exist!");
 });
 
 app.listen(PORT, () => {
