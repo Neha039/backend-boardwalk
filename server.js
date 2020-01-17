@@ -20,7 +20,9 @@ const passport = require("./config/passport");
 
 //connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk02',
+  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk02', // MONGODB_URI is stored in heroku already See note
+  // to see heroku activities git heroku --tail
+  // to see the repos version git remote -v
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -47,7 +49,7 @@ if (process.env.NODE_ENV !== "production") {
 //Set up our session
 const sessionConfig = {
   store: new MongoSessionStore({ mongooseConnection: mongoose.connection }), //this line says we're going to use the connection to the db we already have
-  secret: 'keyboard cat',
+  secret: 'keyboard cat', // secret can be any key you want
   resave: false,
   saveUninitialized: true,
   cookie: {},
@@ -73,10 +75,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//--------------comment this because we don't have client section for this backend section-------------
 // // Serve up static assets (usually on heroku)
 // if (process.env.NODE_ENV === "production") {
 //   app.use(express.static("client/build"));
 // }
+//----------------------------------------------------------------------
 
 // Define API routes here
 const routes = require("./routes");
@@ -84,9 +88,13 @@ app.use(routes);
 
 // Default behavior: send every unmatched route request to the React app (in production)
 app.get("*", (req, res) => {
+
+  //------comment out for no client section------------------------
   // if (process.env.NODE_ENV === "production") {
   //   return res.sendFile(path.join(__dirname, "./client/build/index.html"));
   // }
+  //----------------------------------------------------------------
+
   res.status(404).send("This route does not exist!");
 });
 

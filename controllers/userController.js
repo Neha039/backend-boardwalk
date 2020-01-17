@@ -30,7 +30,7 @@ module.exports = {
         try {
             //create a new user!
             //BUT FIRST!  validation (8
-            const { email, password } = req.body;
+            const { firstName, lastName, email, password } = req.body;
             if (typeof email !== "string" || email === "") {
                 return res.status(400).json({ error: "Must provide an email address!" });
             }
@@ -45,7 +45,7 @@ module.exports = {
             const saltedAndHashedPwd = await bcrypt.hash(password, salt);
 
             //Finally, we create the new user:
-            const newUser = await User.create({ email: email, password: saltedAndHashedPwd });
+            const newUser = await User.create({ firstName: firstName, lastName: lastName, email: email, password: saltedAndHashedPwd });
             
             //And now, we log them in!
             req.login(newUser, err => {
