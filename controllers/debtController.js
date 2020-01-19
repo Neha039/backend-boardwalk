@@ -26,7 +26,7 @@ module.exports = {
     create: async function (req, res) {
         try {
             //create a new debt calculation
-            //BUT FIRST!  validation (8
+            //BUT FIRST!  validation for each variable
             const { loanAmount, downPayment, loanTerm, interestRate, debtAmount, monthlyPaymentAmount, oldInterestRate } = req.body;
             if (typeof loanAmount !== "Number" || loanAmount === "" || loanAmount < 0) {
                 return res.status(400).json({ error: "Must provide a valid loan amount!" });
@@ -44,25 +44,20 @@ module.exports = {
                 return res.status(400).json({ error: "Must provide a valid interest rate!" });
             }
 
-            if (typeof downPayment !== "Number" || downPayment === "" || downPayment < 0) {
-                return res.status(400).json({ error: "Must provide a valid down payment amount!" });
+            if (typeof debtAmount !== "Number" || debtAmount === "" || debtAmount < 0) {
+                return res.status(400).json({ error: "Must provide a valid debt amount!" });
             }
 
+            if (typeof monthlyPaymentAmount !== "Number" || monthlyPaymentAmount === "" || monthlyPaymentAmount < 0) {
+                return res.status(400).json({ error: "Must provide a valid monthly payment amount!" });
+            }
 
-
-            //Now that we have valid input, we have to protect our password
-            //(Note: this work can also live in the user schema; it is shown here so that we can trace what's going on)
-            const salt = await bcrypt.genSalt(10);
-            const saltedAndHashedPwd = await bcrypt.hash(password, salt);
-
-            //Finally, we create the new user:
-            const newUser = await User.create({ firstName: firstName, lastName: lastName, email: email, password: saltedAndHashedPwd });
+            if (typeof oldInterestRate !== "Number" || oldInterestRate === "" || oldInterestRate < 0 || oldInterestRate > 30) {
+                return res.status(400).json({ error: "Must provide a valid interest rate!" });
+            }
             
-            //And now, we log them in!
-            req.login(newUser, err => {
-                if(err) { throw err };
-                res.json(req.user); 
-            });
+            // I dont think  we need this part rt now, maybe for the demo day in feb so kept it here
+            // const newDebt = await Debt.create({ loanPayment: loanPayment, downPayment: downPayment, loanTerm: loanTerm, interestRate: interestRate, debtAmount: debtAmount, monthlyPaymentAmount: monthlyPaymentAmount, oldInterestRate: oldInterestRate});
         }
         catch (err) {
             console.log(err);
