@@ -17,6 +17,18 @@ const debtSchema = new Schema({
     interestRate:{
         type: Number,
         required: true,
+    },
+    debtAmount:{
+        type: Number,
+        required: true,
+    },
+    monthlyPaymentAmount:{
+        type: Number,
+        required: true,
+    },
+    oldinterestRate: {
+        type: Number,
+        required: true,
     }
 });
 
