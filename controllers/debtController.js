@@ -13,7 +13,7 @@ module.exports = {
     },
     findById: async function (req, res) {
         try {
-            const result = await User.findById(req.params.id);
+            const result = await Debt.findById(req.params.id);
             if (!result) {
                 return res.sendStatus(404); //we didn't actually find anybody!
             }
@@ -25,16 +25,30 @@ module.exports = {
     },
     create: async function (req, res) {
         try {
-            //create a new user!
+            //create a new debt calculation
             //BUT FIRST!  validation (8
-            const { firstName, lastName, email, password } = req.body;
-            if (typeof email !== "string" || email === "") {
-                return res.status(400).json({ error: "Must provide an email address!" });
+            const { loanAmount, downPayment, loanTerm, interestRate, debtAmount, monthlyPaymentAmount, oldInterestRate } = req.body;
+            if (typeof loanAmount !== "Number" || loanAmount === "" || loanAmount < 0) {
+                return res.status(400).json({ error: "Must provide a valid loan amount!" });
             }
 
-            if (typeof password !== "string" || password.length < 8 || password.length > 64) {
-                return res.status(400).json({ error: "Must provide a password (8-64 characters)!" });
+            if (typeof downPayment !== "Number" || downPayment === "" || downPayment < 0) {
+                return res.status(400).json({ error: "Must provide a valid down payment amount!" });
             }
+
+            if (typeof loanTerm !== "Number" || loanTerm === "" || loanTerm < 0 || loanTerm > 30) {
+                return res.status(400).json({ error: "Must provide a valid loan term!" });
+            }
+
+            if (typeof interestRate !== "Number" || interestRate === "" || interestRate < 0 || interestRate > 30) {
+                return res.status(400).json({ error: "Must provide a valid interest rate!" });
+            }
+
+            if (typeof downPayment !== "Number" || downPayment === "" || downPayment < 0) {
+                return res.status(400).json({ error: "Must provide a valid down payment amount!" });
+            }
+
+
 
             //Now that we have valid input, we have to protect our password
             //(Note: this work can also live in the user schema; it is shown here so that we can trace what's going on)
