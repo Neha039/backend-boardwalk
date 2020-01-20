@@ -20,7 +20,7 @@ const passport = require("./config/passport");
 
 //connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk02', // MONGODB_URI is stored in heroku already See note
+  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk2020', // MONGODB_URI is stored in heroku already See note
   // to see heroku activities git heroku --tail
   // to see the repos version git remote -v
   {
