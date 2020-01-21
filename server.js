@@ -20,7 +20,7 @@ const passport = require("./config/passport");
 
 //connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk02', // MONGODB_URI is stored in heroku already See note
+  process.env.MONGODB_URI ||  'mongodb://localhost/boardwalk2020', // MONGODB_URI is stored in heroku already See note
   // to see heroku activities git heroku --tail
   // to see the repos version git remote -v
   {
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV !== "production") {
 //Set up our session
 const sessionConfig = {
   store: new MongoSessionStore({ mongooseConnection: mongoose.connection }), //this line says we're going to use the connection to the db we already have
-  secret: 'keyboard cat', // secret can be any key you want
+  secret: process.env.COOKIE_SECRET, // secret can be any key you want. store in .env
   resave: false,
   saveUninitialized: true,
   cookie: {},
