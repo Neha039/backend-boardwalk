@@ -6,7 +6,7 @@ const debtController = require("../../controllers/debtController");
   .get(debtController.findAll)
   .post(debtController.create); 
 
-// Matches with "/api/debt/:id"
+// Matches with "/api/debts/:id"
  router
   .route("/:id")
   .get(debtController.findById)
