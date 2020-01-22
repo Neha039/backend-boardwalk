@@ -4,31 +4,24 @@ const Schema = mongoose.Schema;
 const debtSchema = new Schema({
     loanAmount:{
         type: Number,
-        required: true,
     },
     downPayment:{
         type: Number,
-        required: true,
     },
     loanTerm:{
         type: Number,
-        required: true,
     },
     interestRate:{
         type: Number,
-        required: true,
     },
     debtAmount:{
         type: Number,
-        required: true,
     },
     monthlyPaymentAmount:{
         type: Number,
-        required: true,
     },
     oldinterestRate: {
         type: Number,
-        required: true,
     }
 });
 
