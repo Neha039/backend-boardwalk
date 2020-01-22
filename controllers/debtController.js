@@ -57,7 +57,7 @@ module.exports = {
             }
             
             // I dont think  we need this part rt now, maybe for the demo day in feb so kept it here
-            // const newDebt = await Debt.create({ loanPayment: loanPayment, downPayment: downPayment, loanTerm: loanTerm, interestRate: interestRate, debtAmount: debtAmount, monthlyPaymentAmount: monthlyPaymentAmount, oldInterestRate: oldInterestRate});
+            const newDebt = await Debt.create({ loanPayment: loanPayment, downPayment: downPayment, loanTerm: loanTerm, interestRate: interestRate, debtAmount: debtAmount, monthlyPaymentAmount: monthlyPaymentAmount, oldInterestRate: oldInterestRate});
         }
         catch (err) {
             console.log(err);
